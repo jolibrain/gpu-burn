@@ -376,10 +376,10 @@ int pollTemp(pid_t *p) {
 	if (!myPid) {
 		close(tempPipe[0]);
 		dup2(tempPipe[1], STDOUT_FILENO); // Stdout
-		execlp("nvidia-smi", "nvidia-smi", "-l", "5", "-q", "-d", "TEMPERATURE", NULL);
+		//execlp("nvidia-smi", "nvidia-smi", "-l", "5", "-q", "-d", "TEMPERATURE", NULL);
 		fprintf(stderr, "Could not invoke nvidia-smi, no temps available\n");
 		
-		exit(0);
+		//exit(0);
 	}
 
 	*p = myPid;
@@ -568,7 +568,7 @@ void listenClients(std::vector<int> clientFd, std::vector<pid_t> clientPid, int 
 }
 
 template<class T> void launch(int runLength, bool useDoubles, bool useTensorCores) {
-	system("nvidia-smi -L");
+  //system("nvidia-smi -L");
 
 	// Initting A and B with random data
 	T *A = (T*) malloc(sizeof(T)*SIZE*SIZE);
